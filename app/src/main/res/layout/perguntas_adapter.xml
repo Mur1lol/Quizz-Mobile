@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                                   xmlns:app="http://schemas.android.com/apk/res-auto"
+                                   xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+                                   android:layout_height="wrap_content" app:cardCornerRadius="25dp"
+                                   app:cardElevation="10dp" android:layout_margin="5dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <TextView
+                android:text="txtCategoria"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content" android:id="@+id/txtCategoria"
+                app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="8dp" android:layout_marginRight="8dp" android:layout_marginTop="16dp"
+                app:layout_constraintTop_toTopOf="parent" android:gravity="center"/>
+        <TextView
+                android:text="txtTipo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content" android:id="@+id/txtTipo"
+                android:layout_marginTop="16dp"
+                app:layout_constraintTop_toBottomOf="@+id/txtCategoria" app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginLeft="8dp" android:layout_marginStart="8dp"
+                app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp" android:gravity="center"/>
+        <TextView
+                android:text="txtdificuldade"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content" android:id="@+id/txtDificuldade"
+                android:layout_marginTop="16dp"
+                app:layout_constraintTop_toBottomOf="@+id/txtTipo" app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginLeft="8dp" android:layout_marginStart="8dp"
+                app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp" android:gravity="center"/>
+        <TextView
+                android:text="txtPergunta"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content" android:id="@+id/txtPergunta"
+                android:layout_marginTop="16dp"
+                app:layout_constraintTop_toBottomOf="@+id/txtDificuldade" app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="8dp" android:layout_marginRight="8dp"
+                app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp" android:gravity="center" android:textStyle="bold"
+                android:textColor="@android:color/black"/>
+        <Button
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/btResposta1" android:layout_marginTop="16dp"
+                app:layout_constraintTop_toBottomOf="@+id/txtPergunta" app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginLeft="16dp" android:layout_marginStart="16dp"
+        />
+        <Button
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/btResposta2" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp" android:layout_marginTop="16dp"
+                app:layout_constraintTop_toBottomOf="@+id/txtPergunta"/>
+        <Button
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/btResposta3" android:layout_marginTop="8dp"
+                app:layout_constraintTop_toBottomOf="@+id/btResposta1"
+                app:layout_constraintEnd_toEndOf="@+id/btResposta1"
+                app:layout_constraintStart_toStartOf="@+id/btResposta1"
+                android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+        <Button
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/btResposta4" app:layout_constraintEnd_toEndOf="@+id/btResposta2"
+                android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/btResposta2"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>
