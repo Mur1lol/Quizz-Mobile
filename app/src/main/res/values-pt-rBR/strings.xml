@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Quizzz</string>
+    <string name="cadastro">Cadastrar</string>
+    <string name="confirma">Confirme sua senha</string>
+    <string name="email">Email</string>
+    <string name="nome">Nome</string>
+    <string name="senha">Senha</string>
+</resources>
