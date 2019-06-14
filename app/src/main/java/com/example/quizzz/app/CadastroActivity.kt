@@ -21,9 +21,9 @@ class CadastroActivity : AppCompatActivity() {
     }
 
     private fun cadastraUsuario(){
-        val nome = txtNome
-        val email = txtEmail
-        val Senha = txtSenha
+        val nome = txtNome.text.toString()
+        val email = txtEmail.text.toString()
+        val Senha = txtSenha.text.toString()
 
             //colocar essas informações no banco
 

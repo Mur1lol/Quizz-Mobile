@@ -44,35 +44,28 @@ class PerguntasAdapter (private var perguntas: List<Pergunta>) :
 
             if (pergunta.tipo == "multiple") {
                 var colocacao = embaralhar(5, 1)
+                var list = ArrayList<String>()
 
+                list.add(colocacao, pergunta.resposta_correta)
+                list.add(pergunta.respostas_incorretas[0])
+                list.add(pergunta.respostas_incorretas[1])
+                list.add(pergunta.respostas_incorretas[2])
 
-                itemView.btResposta1.text = pergunta.respostas_incorretas[0]
-                itemView.btResposta2.text = pergunta.respostas_incorretas[1]
-                itemView.btResposta3.text = pergunta.respostas_incorretas[2]
-                itemView.btResposta4.text = pergunta.resposta_correta
-
-                if (colocacao == 0) {
-                    itemView.btResposta1.text = pergunta.resposta_correta
-                    itemView.btResposta4.text = pergunta.respostas_incorretas[0]
-                } else if (colocacao == 1) {
-                    itemView.btResposta2.text = pergunta.resposta_correta
-                    itemView.btResposta4.text = pergunta.respostas_incorretas[1]
-                } else if (colocacao == 2) {
-                    itemView.btResposta3.text = pergunta.resposta_correta
-                    itemView.btResposta4.text = pergunta.respostas_incorretas[2]
-                }
+                itemView.btResposta1.setText(list[0])
+                itemView.btResposta2.setText(list[1])
+                itemView.btResposta3.setText(list[2])
+                itemView.btResposta4.setText(list[3])
             }
             else{
                 var local = embaralhar(3, 1)
 
+                var list = ArrayList<String>()
 
-                itemView.btResposta1.text = pergunta.respostas_incorretas[0]
-                itemView.btResposta2.text = pergunta.resposta_correta
+                list.add(local, pergunta.resposta_correta)
+                list.add(pergunta.respostas_incorretas[0])
 
-                if (local == 0) {
-                    itemView.btResposta1.text = pergunta.resposta_correta
-                    itemView.btResposta2.text = pergunta.respostas_incorretas[0]
-                }
+                itemView.btResposta1.setText(list[0])
+                itemView.btResposta2.setText(list[1])
             }
         }
         fun embaralhar(max: Int, min: Int ): Int{

@@ -43,7 +43,7 @@ class MainActivity : AppCompatActivity() {
 
     fun configuraRetrofit() {
         retrofit = Builder()
-            .baseUrl("https://tads2019-todo-list.herokuapp.com/usuario/login")
+            .baseUrl("https://tads2019-todo-list.herokuapp.com/usuario/login/")
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .build()
@@ -63,7 +63,7 @@ class MainActivity : AppCompatActivity() {
                 Log.d("HAHAHA", "123")
             }
         })
-                                                                        
+
     }
 
 }
