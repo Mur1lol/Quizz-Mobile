@@ -1,13 +1,16 @@
 package com.example.quizzz.servicos
 
-import com.example.quizzz.entidades.Login
+import com.example.quizzz.entidades.Cadastro
 import retrofit2.Call
 import retrofit2.http.POST
 import retrofit2.http.Query
 
-interface LoginService {
-    @POST ("login")
-    fun getLogin(
+interface CadastroService {
+    @POST("registrar")
+    fun getCadastro(
+
+        @Query("nome")
+        nome: String,
 
         @Query("email")
         email: String,
@@ -15,5 +18,5 @@ interface LoginService {
         @Query("senha")
         senha: String
 
-    ): Call<Login>
+    ): Call<Cadastro>
 }
