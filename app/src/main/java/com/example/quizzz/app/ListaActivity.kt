@@ -45,7 +45,7 @@ class ListaActivity : AppCompatActivity() {
     }
 
     fun carregaDados() {
-        service.getPerguntas(20, null, null).enqueue(object : Callback<Resultado> {
+        service.getPerguntas(1, null, null).enqueue(object : Callback<Resultado> {
             override fun onFailure(call: Call<Resultado>, t: Throwable) {
 
             }

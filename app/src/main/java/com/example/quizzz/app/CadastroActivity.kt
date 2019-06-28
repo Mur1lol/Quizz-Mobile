@@ -1,5 +1,6 @@
 package com.example.quizzz.app
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -7,7 +8,10 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.quizzz.R
 import com.example.quizzz.entidades.Cadastro
+import com.example.quizzz.entidades.CadastroResponse
+import com.example.quizzz.entidades.LoginResponse
 import com.example.quizzz.servicos.CadastroService
+import com.example.quizzz.servicos.LoginService
 import kotlinx.android.synthetic.main.activity_cadastro.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -51,17 +55,32 @@ class CadastroActivity : AppCompatActivity() {
         val email = txtEmail.text.toString()
         val senha = txtSenha.text.toString()
 
-        service.getCadastro(nome, email, senha).enqueue(object : Callback<Cadastro> {
-            override fun onFailure(call: Call<Cadastro>, t: Throwable) {
+        service.getCadastro(nome, email, senha).enqueue(object : Callback<CadastroResponse> {
+            override fun onFailure(call: Call<CadastroResponse>, t: Throwable) {
                 Toast.makeText(this@CadastroActivity, "Mensagem de erro!", Toast.LENGTH_SHORT).show()
             }
 
-            override fun onResponse(call: Call<Cadastro>, response: Response<Cadastro>) {
-                Toast.makeText(this@CadastroActivity, "Mensagem de sucesso!", Toast.LENGTH_SHORT).show()
-                //Condição pra ver se o email não é repetido
+            override fun onResponse(call: Call<CadastroResponse>, response: Response<CadastroResponse>) {
+                if(response.body()!=null && senha.length>=6 ) {
+                    var cadastro: CadastroResponse = response.body()!!
+
+                    if (cadastro.sucesso) {
+                        Toast.makeText(this@CadastroActivity, cadastro.mensagem, Toast.LENGTH_SHORT).show()
+                        abrirConfigActivity()
+                    }
+                }
+                else {
+                        Toast.makeText(this@CadastroActivity, "erro ao cadastrar", Toast.LENGTH_SHORT).show()
+                    }
+
             }
 
         })
+    }
+
+    private fun abrirConfigActivity() {
+        val intent = Intent(this, ConfigActivity::class.java)
+        startActivity(intent)
     }
 
 }

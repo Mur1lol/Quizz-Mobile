@@ -40,11 +40,11 @@ class PerguntasAdapter (private var perguntas: List<Pergunta>) :
             itemView.txtDificuldade.text = pergunta.dificuldade
             itemView.txtPergunta.text = pergunta.questao
 
-            //MUDAR DEPOIS
+            //MUDAR DEPOIS - Algumas perguntas n funcionam
 
             if (pergunta.tipo == "multiple") {
                 var colocacao = embaralhar(5, 1)
-                var list = ArrayList<String>()
+                var list :ArrayList<String> = ArrayList()
 
                 list.add(colocacao, pergunta.resposta_correta)
                 list.add(pergunta.respostas_incorretas[0])

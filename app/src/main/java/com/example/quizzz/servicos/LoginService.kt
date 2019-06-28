@@ -1,19 +1,21 @@
 package com.example.quizzz.servicos
 
 import com.example.quizzz.entidades.Login
+import com.example.quizzz.entidades.LoginResponse
 import retrofit2.Call
-import retrofit2.http.POST
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface LoginService {
-    @POST ("login")
+    @Headers("Accept: application/json")
+    @FormUrlEncoded
+    @POST ("usuario/login")
     fun getLogin(
 
-        @Query("email")
+        @Field("email")
         email: String,
 
-        @Query("senha")
+        @Field("senha")
         senha: String
 
-    ): Call<Login>
+    ): Call<LoginResponse>
 }

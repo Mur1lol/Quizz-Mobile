@@ -1,22 +1,24 @@
 package com.example.quizzz.servicos
 
 import com.example.quizzz.entidades.Cadastro
+import com.example.quizzz.entidades.CadastroResponse
 import retrofit2.Call
-import retrofit2.http.POST
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface CadastroService {
+    @Headers("Accept: application/json")
+    @FormUrlEncoded
     @POST("registrar")
     fun getCadastro(
 
-        @Query("nome")
+        @Field("nome")
         nome: String,
 
-        @Query("email")
+        @Field("email")
         email: String,
 
-        @Query("senha")
+        @Field("senha")
         senha: String
 
-    ): Call<Cadastro>
+    ): Call<CadastroResponse>
 }

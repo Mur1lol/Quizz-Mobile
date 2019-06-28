@@ -20,10 +20,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".app.CadastroActivity">
-
         </activity>
         <activity android:name=".app.ListaActivity">
-
+        </activity>
+        <activity android:name=".app.ConfigActivity">
         </activity>
     </application>
 
