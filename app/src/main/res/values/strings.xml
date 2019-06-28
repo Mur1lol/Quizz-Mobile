@@ -9,6 +9,7 @@
 
     <string-array name="categorias">
 
+        <item>random</item>
         <item>General Knowledge</item>
         <item>Entertainment: Books</item>
         <item>Entertainment: Film</item>

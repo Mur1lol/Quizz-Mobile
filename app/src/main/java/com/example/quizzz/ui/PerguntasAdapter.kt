@@ -1,9 +1,11 @@
 package com.example.quizzz.ui
 
-import android.util.Log
+import android.content.Intent
+import android.os.CountDownTimer
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.quizzz.R
 import com.example.quizzz.entidades.Pergunta
@@ -40,37 +42,51 @@ class PerguntasAdapter (private var perguntas: List<Pergunta>) :
             itemView.txtDificuldade.text = pergunta.dificuldade
             itemView.txtPergunta.text = pergunta.questao
 
+            object :CountDownTimer(30000, 1000){
+                override fun onTick(millisUntilFinished: Long) {
+
+                    itemView.idTempo.text = "tempo: ${millisUntilFinished/1000}"
+                }
+
+                override fun onFinish() {// QUANDO ACABAR O TEMPO
+
+//                    val intent = Intent(this, rankingActivity::class.java)
+//                    startActivity(intent)
+                }
+
+            }.start()
+
+
             //MUDAR DEPOIS - Algumas perguntas n funcionam
 
             if (pergunta.tipo == "multiple") {
-                var colocacao = embaralhar(5, 1)
+
                 var list :ArrayList<String> = ArrayList()
 
-                list.add(colocacao, pergunta.resposta_correta)
+                list.add(pergunta.resposta_correta)
                 list.add(pergunta.respostas_incorretas[0])
                 list.add(pergunta.respostas_incorretas[1])
                 list.add(pergunta.respostas_incorretas[2])
 
-                itemView.btResposta1.setText(list[0])
-                itemView.btResposta2.setText(list[1])
-                itemView.btResposta3.setText(list[2])
-                itemView.btResposta4.setText(list[3])
+                list.shuffle()
+
+                itemView.btResposta1.text = list[0]
+                itemView.btResposta2.text = list[1]
+                itemView.btResposta3.text = list[2]
+                itemView.btResposta4.text = list[3]
             }
             else{
-                var local = embaralhar(3, 1)
-
                 var list = ArrayList<String>()
 
-                list.add(local, pergunta.resposta_correta)
+                list.add(pergunta.resposta_correta)
                 list.add(pergunta.respostas_incorretas[0])
 
-                itemView.btResposta1.setText(list[0])
-                itemView.btResposta2.setText(list[1])
+                list.shuffle()
+
+                itemView.btResposta1.text = list[0]
+                itemView.btResposta2.text = list[1]
+
             }
-        }
-        fun embaralhar(max: Int, min: Int ): Int{
-            val random = Random()
-            return random.nextInt( max-min)
         }
     }
 

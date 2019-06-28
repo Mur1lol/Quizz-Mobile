@@ -1,4 +1,6 @@
 package com.example.quizzz.entidades
 
-class CategoriaResponse {
-}
+data class CategoriaResponse (
+    var id: Int,
+    var nome: String
+)

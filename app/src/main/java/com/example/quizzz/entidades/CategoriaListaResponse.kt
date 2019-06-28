@@ -1,4 +1,7 @@
 package com.example.quizzz.entidades
 
-class CategoriaListaResponse {
-}
+class CategoriaListaResponse (
+
+    var list: List<Categoria>
+
+)
