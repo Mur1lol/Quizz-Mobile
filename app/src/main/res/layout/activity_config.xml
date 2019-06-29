@@ -5,59 +5,73 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".app.ConfigActivity">
+        tools:context=".app.ConfigActivity" android:background="#FFEE56">
 
+    <TextView
+            android:text="@string/dificuldade"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView3" app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="24dp" android:layout_marginEnd="24dp" android:layout_marginRight="24dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginLeft="24dp" android:layout_marginStart="24dp"
+            app:layout_constraintHorizontal_bias="0.502" android:textSize="18sp"
+            android:textColor="@android:color/black"/>
+    <RadioGroup
+            android:layout_width="0dp"
+            android:layout_height="174dp"
+            android:id="@+id/radioGroup" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="24dp"
+            android:layout_marginRight="24dp" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginLeft="24dp" android:layout_marginStart="24dp"
+            app:layout_constraintTop_toBottomOf="@+id/textView3" android:layout_marginTop="8dp">
+        <RadioButton
+                android:text="@string/facil"
+                android:layout_width="match_parent"
+                android:layout_height="58dp" tools:layout_editor_absoluteY="50dp"
+                tools:layout_editor_absoluteX="16dp" android:id="@+id/btFacil" android:textSize="14sp"
+                android:textColor="@android:color/black" android:background="@drawable/button_border"
+                android:checked="true" android:layout_margin="5dp" android:layout_weight="1"/>
+        <RadioButton
+                android:text="@string/medio"
+                android:layout_width="match_parent"
+                android:layout_height="58dp" android:id="@+id/btMedio" android:layout_weight="1"
+                android:textColor="@android:color/black" android:background="@drawable/button_border"
+                android:layout_margin="5dp"/>
+        <RadioButton
+                android:text="@string/dificil"
+                android:layout_width="match_parent"
+                android:layout_height="58dp" android:id="@+id/btDificil" android:layout_weight="1"
+                android:textColor="@android:color/black" android:background="@drawable/button_border"
+                android:layout_margin="5dp"/>
+    </RadioGroup>
+    <TextView
+            android:text="@string/categoria"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginLeft="24dp" android:layout_marginStart="24dp" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="24dp" android:layout_marginRight="24dp" android:id="@+id/textView4"
+            android:layout_marginTop="16dp" app:layout_constraintTop_toBottomOf="@+id/radioGroup"
+            android:textSize="18sp" android:textColor="@android:color/black"/>
     <Spinner
-            android:layout_width="368dp"
-            android:layout_height="0dp"
-            tools:layout_editor_absoluteX="8dp" android:id="@+id/idCategoria"
-            app:layout_constraintTop_toBottomOf="@+id/textView4"/>
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/idCategoria"
+            app:layout_constraintTop_toBottomOf="@+id/textView4" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginLeft="24dp" android:layout_marginStart="24dp" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="24dp" android:layout_marginRight="24dp" android:layout_marginTop="8dp"
+    />
     <Button
-            android:text="Play"
-            android:layout_width="wrap_content"
+            android:text="@string/play"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:id="@+id/btJogar" android:layout_marginTop="8dp"
             app:layout_constraintTop_toBottomOf="@+id/idCategoria" app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="8dp" android:layout_marginRight="8dp"
-            app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="8dp"
-            android:layout_marginStart="8dp" android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"/>
-    <TextView
-            android:text="Selecione sua Dificuldade"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView3" app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="12dp" android:layout_marginEnd="8dp" android:layout_marginRight="8dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginLeft="8dp" android:layout_marginStart="8dp"
-            app:layout_constraintHorizontal_bias="0.502"/>
-    <RadioGroup
-            android:layout_width="386dp"
-            android:layout_height="174dp" tools:layout_editor_absoluteY="34dp"
-            tools:layout_editor_absoluteX="0dp" android:id="@+id/radioGroup">
-        <RadioButton
-                android:text="Hard"
-                android:layout_width="match_parent"
-                android:layout_height="58dp" android:id="@+id/btDificil" android:layout_weight="1"/>
-        <RadioButton
-                android:text="mediano"
-                android:layout_width="match_parent"
-                android:layout_height="58dp" android:id="@+id/btMedio" android:layout_weight="1"
-        />
-        <RadioButton
-                android:text="Easy"
-                android:layout_width="419dp"
-                android:layout_height="58dp" tools:layout_editor_absoluteY="50dp"
-                tools:layout_editor_absoluteX="16dp" android:id="@+id/btFacil"/>
-    </RadioGroup>
-    <TextView
-            android:text="Selecione sua Categoria"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            app:layout_constraintTop_toBottomOf="@+id/radioGroup" app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginLeft="8dp" android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="8dp" android:layout_marginRight="8dp" android:id="@+id/textView4"/>
+            android:layout_marginEnd="50dp" android:layout_marginRight="50dp"
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="50dp"
+            android:layout_marginStart="50dp" android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent" android:background="@drawable/button_border"
+            android:textSize="14sp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

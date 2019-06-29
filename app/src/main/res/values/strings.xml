@@ -35,6 +35,12 @@
         <item>Entertainment: Japanese Anime and Manga</item>
         <item>Entertainment: Cartoon and Animations</item>
     </string-array>
+    <string name="facil">Easy</string>
+    <string name="medio">Medium</string>
+    <string name="dificil">Hard</string>
+    <string name="dificuldade">Select a difficulty</string>
+    <string name="categoria">Select a category</string>
+    <string name="play">Play</string>
 </resources>
 
 

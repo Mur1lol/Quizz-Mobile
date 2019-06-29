@@ -7,15 +7,15 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.quizzz.R
 import com.example.quizzz.entidades.Categoria
+import com.example.quizzz.ui.CategoriasAdapter.CategoriaViewHolder
 import kotlinx.android.synthetic.main.perguntas_adapter.view.*
 import java.util.*
 
 class CategoriasAdapter (private var categorias: List<Categoria>) :
-    RecyclerView.Adapter<CategoriasAdapter.CategoriaViewHolder>() {
+    RecyclerView.Adapter<CategoriaViewHolder>() {
     override fun onBindViewHolder(holder: CategoriaViewHolder, position: Int) {
         holder.preencherView(categorias[position])
     }
-
 
     override fun getItemViewType(position: Int): Int {
         val categoria = categorias[position]
@@ -24,19 +24,16 @@ class CategoriasAdapter (private var categorias: List<Categoria>) :
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
-        CategoriasAdapter.CategoriaViewHolder(
+        CategoriaViewHolder(
             LayoutInflater.from(parent.context).inflate(viewType, parent, false)
         )
 
-    override fun getItemCount() = perguntas.size
+    override fun getItemCount() = categorias.size
 
     inner class CategoriaViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun preencherView(pergunta: Categoria) {
+        fun preencherView(categoria: Categoria) {
 
-            itemView.txtCategoria.text = pergunta.categoria
-            itemView.txtTipo.text = pergunta.tipo
-            itemView.txtDificuldade.text = pergunta.dificuldade
-            itemView.txtPergunta.text = pergunta.questao
+
 
             object :CountDownTimer(30000, 1000){
                 override fun onTick(millisUntilFinished: Long) {

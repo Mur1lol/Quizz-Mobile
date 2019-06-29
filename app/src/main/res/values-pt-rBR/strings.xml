@@ -7,4 +7,10 @@
     <string name="nome">Nome</string>
     <string name="senha">Senha</string>
     <string name="entrar">Entrar</string>
+    <string name="categoria">Selecione uma categoria</string>
+    <string name="dificil">Difícil</string>
+    <string name="dificuldade">Selecione uma dificuldade</string>
+    <string name="facil">Fácil</string>
+    <string name="medio">Medio</string>
+    <string name="play">Jogar</string>
 </resources>

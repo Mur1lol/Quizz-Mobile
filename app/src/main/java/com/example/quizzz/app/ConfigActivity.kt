@@ -31,10 +31,10 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 
 class ConfigActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
-//    var listCategoria= arrayOf("Random","General Knowledge","Books","Entertainment: Film", "Music","Entertainment: Musicals and Theatres",
-//        "Entertainment: Television", "Entertainment: Video Games", "Entertainment: Board Games", "Science and Nature", "Science: Computers",
-//        "Science: Mathematics", "Mythology", "Sports", "Geography", "History", "Politics", "Art", "Celebrities","Animals","Vehicles",
-//        "Entertainment: Comics","Science: Gadgets","Entertainment: Japanese Anime and Manga", "Entertainment: Cartoon and Animations")
+    var listCategoria= arrayOf("Random","General Knowledge","Books","Entertainment: Film", "Music","Entertainment: Musicals and Theatres",
+        "Entertainment: Television", "Entertainment: Video Games", "Entertainment: Board Games", "Science and Nature", "Science: Computers",
+        "Science: Mathematics", "Mythology", "Sports", "Geography", "History", "Politics", "Art", "Celebrities","Animals","Vehicles",
+        "Entertainment: Comics","Science: Gadgets","Entertainment: Japanese Anime and Manga", "Entertainment: Cartoon and Animations")
 
     lateinit var retrofit: Retrofit
     lateinit var service: ListaCategoriaService
@@ -54,27 +54,22 @@ class ConfigActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         // Set layout to use when the list of choices appear
         aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         // Set Adapter to Spinner
-        idCategoria.setAdapter(aa)
+        idCategoria.adapter = aa
 
 
 
         btJogar.setOnClickListener {
             val intent = Intent(this, ListaActivity::class.java)
-                    startActivity(intent)
+            startActivity(intent)
         }
 
         var adapter = ArrayAdapter.createFromResource(this, R.array.categorias, android.R.layout.simple_spinner_item)
         idCategoria.adapter = adapter
-
     }
 
-    override fun onNothingSelected(parent: AdapterView<*>?) {
+    override fun onNothingSelected(parent: AdapterView<*>?) {}
 
-    }
-
-    override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-
-    }
+    override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {}
 
     fun configuraRetrofit() {
         retrofit = Retrofit.Builder()
@@ -82,7 +77,6 @@ class ConfigActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
         service = retrofit.create<ListaCategoriaService>(ListaCategoriaService::class.java)
-
     }
 
     fun carregarLista() {
@@ -90,7 +84,6 @@ class ConfigActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
         service.getListaCategoria(list!!).enqueue(object: Callback<CategoriaListaResponse>{
             override fun onFailure(call: Call<CategoriaListaResponse>, t: Throwable) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
             }
 
             override fun onResponse(call: Call<CategoriaListaResponse>, response: Response<CategoriaListaResponse>) {
@@ -98,7 +91,7 @@ class ConfigActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
                 if (listaCategoria != null){
                     var adapter = CategoriasAdapter(listaCategoria)
                     listCategoria.adapter = adapter
-                    listCategoria.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
+                    listCategoria.layoutManager = LinearLayoutManager(this@ConfigActivity, RecyclerView.VERTICAL, false)
             }
 
         })
