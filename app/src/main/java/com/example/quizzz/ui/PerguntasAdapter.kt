@@ -1,11 +1,9 @@
 package com.example.quizzz.ui
 
-import android.content.Intent
 import android.os.CountDownTimer
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.quizzz.R
 import com.example.quizzz.entidades.Pergunta

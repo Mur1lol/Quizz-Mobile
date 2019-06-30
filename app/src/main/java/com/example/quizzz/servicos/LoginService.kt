@@ -1,6 +1,5 @@
 package com.example.quizzz.servicos
 
-import com.example.quizzz.entidades.Login
 import com.example.quizzz.entidades.LoginResponse
 import retrofit2.Call
 import retrofit2.http.*

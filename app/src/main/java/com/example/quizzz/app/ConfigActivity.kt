@@ -1,44 +1,35 @@
 package com.example.quizzz.app
 
-
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
-import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.quizzz.R
-import com.example.quizzz.R.string.senha
 import com.example.quizzz.entidades.Categoria
-import com.example.quizzz.entidades.CategoriaListaResponse
 import com.example.quizzz.entidades.CategoriaResponse
-import com.example.quizzz.entidades.LoginResponse
-import com.example.quizzz.servicos.CategoriaService
 import com.example.quizzz.servicos.ListaCategoriaService
-import com.example.quizzz.servicos.LoginService
 import com.example.quizzz.ui.CategoriasAdapter
-import com.example.quizzz.ui.PerguntasAdapter
 import kotlinx.android.synthetic.main.activity_config.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
+import android.content.Context
 
 
 class ConfigActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
-    var listCategoria= arrayOf("Random","General Knowledge","Books","Entertainment: Film", "Music","Entertainment: Musicals and Theatres",
-        "Entertainment: Television", "Entertainment: Video Games", "Entertainment: Board Games", "Science and Nature", "Science: Computers",
-        "Science: Mathematics", "Mythology", "Sports", "Geography", "History", "Politics", "Art", "Celebrities","Animals","Vehicles",
-        "Entertainment: Comics","Science: Gadgets","Entertainment: Japanese Anime and Manga", "Entertainment: Cartoon and Animations")
 
     lateinit var retrofit: Retrofit
     lateinit var service: ListaCategoriaService
-    lateinit var serviceCategoria: CategoriaService
+    //lateinit var adapter: CategoriasAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,51 +40,63 @@ class ConfigActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
         idCategoria.onItemSelectedListener = this
 
-        // Create an ArrayAdapter using a simple spinner layout and languages array
-        val aa :ArrayAdapter<String> = ArrayAdapter(this, android.R.layout.simple_spinner_item, listCategoria)
-        // Set layout to use when the list of choices appear
-        aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        // Set Adapter to Spinner
-        idCategoria.adapter = aa
-
-
-
         btJogar.setOnClickListener {
             val intent = Intent(this, ListaActivity::class.java)
             startActivity(intent)
         }
-
-        var adapter = ArrayAdapter.createFromResource(this, R.array.categorias, android.R.layout.simple_spinner_item)
-        idCategoria.adapter = adapter
     }
 
-    override fun onNothingSelected(parent: AdapterView<*>?) {}
+    override fun onNothingSelected(parent: AdapterView<*>?) {
 
-    override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {}
+    }
+
+    override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+        Log.e("Selecionado :", "N SEI")
+    }
 
     fun configuraRetrofit() {
+
+        //https://opentdb.com/api_category.php
         retrofit = Retrofit.Builder()
-            .baseUrl("https://tads2019-todo-list.herokuapp.com/")
+            .baseUrl("https://opentdb.com/")
             .addConverterFactory(GsonConverterFactory.create())
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .build()
-        service = retrofit.create<ListaCategoriaService>(ListaCategoriaService::class.java)
+        service = retrofit.create(ListaCategoriaService::class.java)
     }
 
     fun carregarLista() {
-        var list: List<Categoria>? = null
-
-        service.getListaCategoria(list!!).enqueue(object: Callback<CategoriaListaResponse>{
-            override fun onFailure(call: Call<CategoriaListaResponse>, t: Throwable) {
+        service.getListaCategoria().enqueue(object: Callback<CategoriaResponse>{
+            override fun onFailure(call: Call<CategoriaResponse>, t: Throwable) {
             }
 
-            override fun onResponse(call: Call<CategoriaListaResponse>, response: Response<CategoriaListaResponse>) {
-                val listaCategoria: CategoriaListaResponse? = response.body()
-                if (listaCategoria != null){
-                    var adapter = CategoriasAdapter(listaCategoria)
-                    listCategoria.adapter = adapter
-                    listCategoria.layoutManager = LinearLayoutManager(this@ConfigActivity, RecyclerView.VERTICAL, false)
+            override fun onResponse(call: Call<CategoriaResponse>, response: Response<CategoriaResponse>) {
+//                val categorias = response.body()?.trivia_categories
+//                if (categorias != null) {
+//                    configuraRecyclerView(categorias)
+//                }
+                if (response.body()!= null) {
+                    var categorias: CategoriaResponse = response.body()!!
+
+                    val adapter : ArrayAdapter<Categoria> = ArrayAdapter(this@ConfigActivity, android.R.layout.simple_spinner_item, categorias.trivia_categories)
+                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                    idCategoria.adapter = adapter
+
+
+
+
+                    Log.e("CATEGORIAS: ",""+categorias.trivia_categories)
+                }
             }
 
         })
     }
+
+//    fun configuraRecyclerView(categorias: List<Categoria>) {
+//        adapter = CategoriasAdapter(categorias)
+//
+//        categorias.adapter = adapter
+//        categorias.layoutManager = LinearLayoutManager(this@ConfigActivity, RecyclerView.VERTICAL, false)
+//    }
+
 }

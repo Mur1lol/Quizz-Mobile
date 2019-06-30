@@ -27,12 +27,10 @@ class ListaActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.lista_activity)
 
-        //swipe.isRefreshing = true
         configuraRetrofit()
         carregaDados()
 
         //https://opentdb.com/api.php?amount=10&category=21&difficulty=hard
-
     }
 
     fun configuraRetrofit() {
