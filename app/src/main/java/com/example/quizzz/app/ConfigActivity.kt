@@ -1,19 +1,17 @@
 package com.example.quizzz.app
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.View
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.Spinner
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.quizzz.R
 import com.example.quizzz.entidades.Categoria
 import com.example.quizzz.entidades.CategoriaResponse
 import com.example.quizzz.servicos.ListaCategoriaService
+import com.example.quizzz.ui.CategoriaListListener
 import com.example.quizzz.ui.CategoriasAdapter
 import kotlinx.android.synthetic.main.activity_config.*
 import retrofit2.Call
@@ -22,14 +20,12 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
-import android.content.Context
 
-
-class ConfigActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
+class ConfigActivity : AppCompatActivity(), CategoriaListListener {
 
     lateinit var retrofit: Retrofit
     lateinit var service: ListaCategoriaService
-    //lateinit var adapter: CategoriasAdapter
+    lateinit var adapter: CategoriasAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,20 +34,28 @@ class ConfigActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         configuraRetrofit()
         carregarLista()
 
-        idCategoria.onItemSelectedListener = this
-
         btJogar.setOnClickListener {
             val intent = Intent(this, ListaActivity::class.java)
             startActivity(intent)
         }
-    }
 
-    override fun onNothingSelected(parent: AdapterView<*>?) {
+        var prefsDificuldade = getSharedPreferences("dificuldade", Context.MODE_PRIVATE)
+        var edDif = prefsDificuldade.edit()
 
-    }
+        btFacil.setOnClickListener {
+            edDif.putString("dificuldade", "easy")
+            edDif.apply()
+        }
 
-    override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-        Log.e("Selecionado :", "N SEI")
+        btMedio.setOnClickListener {
+            edDif.putString("dificuldade", "medium")
+            edDif.apply()
+        }
+
+        btDificil.setOnClickListener {
+            edDif.putString("dificuldade", "hard")
+            edDif.apply()
+        }
     }
 
     fun configuraRetrofit() {
@@ -71,32 +75,32 @@ class ConfigActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
             }
 
             override fun onResponse(call: Call<CategoriaResponse>, response: Response<CategoriaResponse>) {
-//                val categorias = response.body()?.trivia_categories
-//                if (categorias != null) {
-//                    configuraRecyclerView(categorias)
-//                }
-                if (response.body()!= null) {
-                    var categorias: CategoriaResponse = response.body()!!
-
-                    val adapter : ArrayAdapter<Categoria> = ArrayAdapter(this@ConfigActivity, android.R.layout.simple_spinner_item, categorias.trivia_categories)
-                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-                    idCategoria.adapter = adapter
-
-
-
-
-                    Log.e("CATEGORIAS: ",""+categorias.trivia_categories)
+                val categorias = response.body()?.trivia_categories
+                if (categorias != null) {
+                    configuraRecyclerView(categorias)
                 }
             }
-
         })
     }
 
-//    fun configuraRecyclerView(categorias: List<Categoria>) {
-//        adapter = CategoriasAdapter(categorias)
-//
-//        categorias.adapter = adapter
-//        categorias.layoutManager = LinearLayoutManager(this@ConfigActivity, RecyclerView.VERTICAL, false)
-//    }
+    fun configuraRecyclerView(categorias: List<Categoria>) {
+        adapter = CategoriasAdapter(categorias, this)
+        listCategorias.adapter = adapter
+        listCategorias.layoutManager = LinearLayoutManager(this@ConfigActivity, RecyclerView.VERTICAL, false)
+    }
+
+    override fun preferences(categoria: Categoria) {
+        var prefsCategoria = getSharedPreferences("categoria", Context.MODE_PRIVATE)
+        var edCat = prefsCategoria.edit()
+
+        Log.e("CATEGORIA - NOME:", categoria.nome)
+        Log.e("CATEGORIA - ID",""+categoria.id)
+
+        edCat.putInt("categoria", categoria.id.toInt())
+        edCat.apply()
+
+        var categoriar = prefsCategoria.getInt("categoria", 0)
+        Log.e("PREFERENCIAS", ""+categoriar)
+    }
 
 }

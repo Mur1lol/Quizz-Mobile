@@ -1,13 +1,16 @@
 package com.example.quizzz.app
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.quizzz.R
+import com.example.quizzz.entidades.Categoria
 import com.example.quizzz.entidades.Pergunta
 import com.example.quizzz.entidades.Resultado
 import com.example.quizzz.servicos.PerguntasService
+import com.example.quizzz.ui.CategoriaListListener
 import com.example.quizzz.ui.PerguntasAdapter
 import kotlinx.android.synthetic.main.lista_activity.*
 import retrofit2.Call
@@ -43,7 +46,14 @@ class ListaActivity : AppCompatActivity() {
     }
 
     fun carregaDados() {
-        service.getPerguntas(1, null, null).enqueue(object : Callback<Resultado> {
+        var prefsDificuldade = getSharedPreferences("dificuldade", Context.MODE_PRIVATE)
+        var prefsCategoria = getSharedPreferences("categoria", Context.MODE_PRIVATE)
+
+        var dificuldade = prefsDificuldade.getString("dificuldade", null)
+        var categoria = prefsCategoria.getInt("categoria", 0)
+
+
+        service.getPerguntas(1, categoria , dificuldade).enqueue(object : Callback<Resultado> {
             override fun onFailure(call: Call<Resultado>, t: Throwable) {
 
             }
@@ -62,5 +72,4 @@ class ListaActivity : AppCompatActivity() {
         listPerguntas.adapter = adapter
         listPerguntas.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
     }
-
 }

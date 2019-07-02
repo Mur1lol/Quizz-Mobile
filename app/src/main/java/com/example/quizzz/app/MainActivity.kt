@@ -1,6 +1,9 @@
 package com.example.quizzz.app
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
+import android.content.SharedPreferences.Editor
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
@@ -26,22 +29,20 @@ class MainActivity : AppCompatActivity() {
 
         //https://tads2019-todo-list.herokuapp.com/usuario/login
 
-//        val prefs = getPreferences(0)
-
-//        val email1 = prefs.edit().putString("user_email", txtEmailLogin.text.toString()).commit()
-//        val senha1 = prefs.edit().putString("user_senha", txtSenhaLogin.text.toString()).commit()
-//
-//        Log.e("TESTE", ""+email1+senha1)
-
-
-//        val email = prefs.getString("user_email", null)
-//        val senha = prefs.getString("user_password", null)
-
-
-
-
-
         configuraRetrofit()
+
+        //Entrar Sozinho
+        var prefsUsuario = getSharedPreferences("usuario", Context.MODE_PRIVATE)
+
+        //txtEmailLogin.setText(prefs.getString("email", null))
+        //txtSenhaLogin.setText(prefs.getString("senha", null))
+
+        var email = prefsUsuario.getString("email", null)
+        var senha = prefsUsuario.getString("senha", null)
+
+        if(email != null && senha != null) {
+            carregaDados(email, senha)
+        }
 
         btLogar.setOnClickListener {
                 carregaDados(txtEmailLogin.text.toString(), txtSenhaLogin.text.toString())
@@ -50,11 +51,6 @@ class MainActivity : AppCompatActivity() {
         btRegistrar.setOnClickListener {
             abrirCadastroActivity()
         }
-    }
-
-    private fun abrirCadastroActivity() {
-        val intent = Intent(this, CadastroActivity::class.java)
-        startActivity(intent)
     }
 
     fun configuraRetrofit() {
@@ -74,8 +70,15 @@ class MainActivity : AppCompatActivity() {
             override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
                 var login: LoginResponse = response.body()!!
                 if(response.body()!=null){
-                    if (senha.length>=6) {
+                    if (email != null && senha.length>=6) {
                         if (login.sucesso) {
+                            var prefsUsuario = getSharedPreferences("usuario", Context.MODE_PRIVATE)
+                            var edUser = prefsUsuario.edit()
+
+                            edUser.putString("email", txtEmailLogin.text.toString())
+                            edUser.putString("senha", txtSenhaLogin.text.toString())
+                            edUser.apply()
+
                             Toast.makeText(this@MainActivity, login.mensagem, Toast.LENGTH_SHORT).show()
                             abrirConfigActivity()
                         } else {
@@ -88,6 +91,11 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         })
+    }
+
+    private fun abrirCadastroActivity() {
+        val intent = Intent(this, CadastroActivity::class.java)
+        startActivity(intent)
     }
 
     private fun abrirConfigActivity() {
