@@ -1,17 +1,14 @@
 package com.example.quizzz.app
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.quizzz.R
-import com.example.quizzz.entidades.Cadastro
 import com.example.quizzz.entidades.CadastroResponse
-import com.example.quizzz.entidades.LoginResponse
 import com.example.quizzz.servicos.CadastroService
-import com.example.quizzz.servicos.LoginService
 import kotlinx.android.synthetic.main.activity_cadastro.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -65,6 +62,13 @@ class CadastroActivity : AppCompatActivity() {
                     var cadastro: CadastroResponse = response.body()!!
 
                     if (cadastro.sucesso) {
+                        var prefsUsuario = getSharedPreferences("usuario", Context.MODE_PRIVATE)
+                        var edUser = prefsUsuario.edit()
+
+                        edUser.putString("email", txtEmail.text.toString())
+                        edUser.putString("senha", txtSenha.text.toString())
+                        edUser.apply()
+
                         Toast.makeText(this@CadastroActivity, cadastro.mensagem, Toast.LENGTH_SHORT).show()
                         abrirConfigActivity()
                     }

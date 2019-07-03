@@ -71,8 +71,7 @@ class ConfigActivity : AppCompatActivity(), CategoriaListListener {
 
     fun carregarLista() {
         service.getListaCategoria().enqueue(object: Callback<CategoriaResponse>{
-            override fun onFailure(call: Call<CategoriaResponse>, t: Throwable) {
-            }
+            override fun onFailure(call: Call<CategoriaResponse>, t: Throwable) {}
 
             override fun onResponse(call: Call<CategoriaResponse>, response: Response<CategoriaResponse>) {
                 val categorias = response.body()?.trivia_categories
@@ -93,14 +92,8 @@ class ConfigActivity : AppCompatActivity(), CategoriaListListener {
         var prefsCategoria = getSharedPreferences("categoria", Context.MODE_PRIVATE)
         var edCat = prefsCategoria.edit()
 
-        Log.e("CATEGORIA - NOME:", categoria.nome)
-        Log.e("CATEGORIA - ID",""+categoria.id)
-
         edCat.putInt("categoria", categoria.id.toInt())
         edCat.apply()
-
-        var categoriar = prefsCategoria.getInt("categoria", 0)
-        Log.e("PREFERENCIAS", ""+categoriar)
     }
 
 }

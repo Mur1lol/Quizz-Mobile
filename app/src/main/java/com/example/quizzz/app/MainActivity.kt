@@ -6,6 +6,7 @@ import android.content.SharedPreferences
 import android.content.SharedPreferences.Editor
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.quizzz.R
@@ -33,19 +34,29 @@ class MainActivity : AppCompatActivity() {
 
         //Entrar Sozinho
         var prefsUsuario = getSharedPreferences("usuario", Context.MODE_PRIVATE)
-
-        //txtEmailLogin.setText(prefs.getString("email", null))
-        //txtSenhaLogin.setText(prefs.getString("senha", null))
+        var prefsDificuldade = getSharedPreferences("dificuldade", Context.MODE_PRIVATE)
+        var prefsCategoria = getSharedPreferences("categoria", Context.MODE_PRIVATE)
 
         var email = prefsUsuario.getString("email", null)
         var senha = prefsUsuario.getString("senha", null)
+        var dificuldade = prefsDificuldade.getString("dificuldade", null)
+        var categoria = prefsCategoria.getInt("categoria", 0)
 
-        if(email != null && senha != null) {
-            carregaDados(email, senha)
+        Log.e("Mail", email)
+        Log.e("Mail", dificuldade)
+        Log.e("Mail", ""+categoria)
+
+        if(email != null || senha != null) {
+            txtEmailLogin.setText(email)
+            txtSenhaLogin.setText(senha)
+
+            esconderBotao()
+            carregaDados(txtEmailLogin.text.toString(), txtSenhaLogin.text.toString())
         }
 
         btLogar.setOnClickListener {
-                carregaDados(txtEmailLogin.text.toString(), txtSenhaLogin.text.toString())
+            esconderBotao()
+            carregaDados(txtEmailLogin.text.toString(), txtSenhaLogin.text.toString())
         }
 
         btRegistrar.setOnClickListener {
@@ -82,10 +93,12 @@ class MainActivity : AppCompatActivity() {
                             Toast.makeText(this@MainActivity, login.mensagem, Toast.LENGTH_SHORT).show()
                             abrirConfigActivity()
                         } else {
+                            mostraBotao()
                             Toast.makeText(this@MainActivity, login.mensagem, Toast.LENGTH_SHORT).show()
                         }
                     }
                     else {
+                        mostraBotao()
                         Toast.makeText(this@MainActivity, login.mensagem, Toast.LENGTH_SHORT).show()
                     }
                 }
@@ -101,5 +114,16 @@ class MainActivity : AppCompatActivity() {
     private fun abrirConfigActivity() {
         val intent = Intent(this, ConfigActivity::class.java)
         startActivity(intent)
+    }
+
+    fun esconderBotao() {
+        btLogar.visibility = View.INVISIBLE
+        btRegistrar.visibility = View.INVISIBLE
+        Toast.makeText(this, "Entrando...", Toast.LENGTH_SHORT).show()
+    }
+
+    fun mostraBotao() {
+        btLogar.visibility = View.VISIBLE
+        btRegistrar.visibility = View.VISIBLE
     }
 }

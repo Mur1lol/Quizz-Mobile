@@ -13,4 +13,6 @@
     <string name="facil">Fácil</string>
     <string name="medio">Medio</string>
     <string name="play">Jogar</string>
+    <string name="tempo">Tempo</string>
+    <string name="pular">Pular pergunta</string>
 </resources>

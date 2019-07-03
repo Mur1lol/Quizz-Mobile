@@ -31,9 +31,8 @@ class CategoriasAdapter (private var categorias: List<Categoria>, private  var l
         fun preencherView(categoria: Categoria) {
             itemView.txtCategoria.text = categoria.nome
 
-
             itemView.cardCategoria.setOnClickListener {
-                itemView.cardCategoria.setCardBackgroundColor(Color.GREEN)
+                itemView.cardCategoria.setCardBackgroundColor(Color.LTGRAY)
                 listener.preferences(categoria)
             }
         }

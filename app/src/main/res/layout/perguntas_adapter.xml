@@ -10,85 +10,76 @@
             android:layout_height="match_parent">
 
         <TextView
-                android:text="TextView"
-                android:layout_width="wrap_content"
+                android:text="TEMPO"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content" android:id="@+id/idTempo"
-                android:layout_marginBottom="8dp"
-                app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginLeft="8dp" android:layout_marginStart="8dp"
-                app:layout_constraintTop_toBottomOf="@+id/btPular"/>
-        <Button
-                android:text="Pular Questão"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" android:id="@+id/btPular"
-                app:layout_constraintStart_toStartOf="@+id/idTempo" android:layout_marginLeft="8dp"
-                android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginEnd="8dp" android:layout_marginRight="8dp" android:layout_marginBottom="8dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@+id/btResposta4"/>
-        <TextView
-                android:text="txtCategoria"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content" android:id="@+id/txtCategoria"
-                app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="8dp"
-                android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginEnd="8dp" android:layout_marginRight="8dp" android:layout_marginTop="16dp"
-                app:layout_constraintTop_toTopOf="parent" android:gravity="center"/>
-        <TextView
-                android:text="txtTipo"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content" android:id="@+id/txtTipo"
-                android:layout_marginTop="16dp"
-                app:layout_constraintTop_toBottomOf="@+id/txtCategoria" app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginLeft="8dp" android:layout_marginStart="8dp"
-                app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
-                android:layout_marginRight="8dp" android:gravity="center"/>
-        <TextView
-                android:text="txtdificuldade"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content" android:id="@+id/txtDificuldade"
-                android:layout_marginTop="16dp"
-                app:layout_constraintTop_toBottomOf="@+id/txtTipo" app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginLeft="8dp" android:layout_marginStart="8dp"
-                app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
-                android:layout_marginRight="8dp" android:gravity="center"/>
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginLeft="24dp" android:layout_marginStart="24dp"
+                android:textColor="@android:color/black"
+                android:layout_marginTop="16dp" app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginEnd="24dp"
+                app:layout_constraintEnd_toEndOf="parent" android:layout_marginRight="24dp"/>
         <TextView
                 android:text="txtPergunta"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content" android:id="@+id/txtPergunta"
-                android:layout_marginTop="16dp"
-                app:layout_constraintTop_toBottomOf="@+id/txtDificuldade" app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginEnd="8dp" android:layout_marginRight="8dp"
-                app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="8dp"
-                android:layout_marginStart="8dp" android:gravity="center" android:textStyle="bold"
-                android:textColor="@android:color/black"/>
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="24dp" android:layout_marginRight="24dp"
+                app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="24dp"
+                android:layout_marginStart="24dp" android:gravity="center" android:textStyle="bold"
+                android:textColor="@android:color/black" android:layout_marginTop="16dp"
+                app:layout_constraintTop_toBottomOf="@+id/idTempo"/>
         <Button
-                android:layout_width="150dp"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/btResposta1" android:layout_marginTop="16dp"
+                android:id="@+id/btResposta1"
                 app:layout_constraintTop_toBottomOf="@+id/txtPergunta" app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginLeft="16dp" android:layout_marginStart="16dp"
-        />
+                android:layout_marginLeft="24dp" android:layout_marginStart="24dp"
+                android:background="@drawable/button_border" android:textColor="@android:color/black"
+                android:layout_marginTop="16dp" android:layout_marginEnd="24dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginRight="24dp"/>
         <Button
-                android:layout_width="150dp"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/btResposta2" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="16dp"
-                android:layout_marginRight="16dp" android:layout_marginTop="16dp"
-                app:layout_constraintTop_toBottomOf="@+id/txtPergunta"/>
+                android:id="@+id/btResposta2" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="24dp"
+                android:layout_marginRight="24dp"
+                android:background="@drawable/button_border"
+                android:textColor="@android:color/black" android:layout_marginTop="8dp"
+                app:layout_constraintTop_toBottomOf="@+id/btResposta1" android:layout_marginStart="24dp"
+                app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="24dp"/>
         <Button
-                android:layout_width="150dp"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/btResposta3" android:layout_marginTop="8dp"
-                app:layout_constraintTop_toBottomOf="@+id/btResposta1"
-                app:layout_constraintEnd_toEndOf="@+id/btResposta1"
-                app:layout_constraintStart_toStartOf="@+id/btResposta1"
-        />
-        <Button
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:id="@+id/btResposta4" app:layout_constraintEnd_toEndOf="@+id/btResposta2"
-                app:layout_constraintStart_toStartOf="@+id/btResposta2"
-                app:layout_constraintBottom_toBottomOf="@+id/btResposta3" android:layout_marginTop="8dp"
+                android:id="@+id/btResposta3"
+                android:background="@drawable/button_border" android:textColor="@android:color/black"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="24dp" android:layout_marginRight="24dp"
+                app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="24dp"
+                android:layout_marginStart="24dp" android:layout_marginTop="8dp"
                 app:layout_constraintTop_toBottomOf="@+id/btResposta2"/>
+        <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/btResposta4"
+                android:background="@drawable/button_border"
+                android:textColor="@android:color/black"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginLeft="24dp" android:layout_marginStart="24dp"
+                app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="24dp"
+                android:layout_marginRight="24dp" android:layout_marginTop="8dp"
+                app:layout_constraintTop_toBottomOf="@+id/btResposta3"/>
+        <Button
+                android:text="@string/pular"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content" android:id="@+id/btPular"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="16dp" android:layout_marginRight="16dp" android:layout_marginBottom="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginTop="16dp" app:layout_constraintTop_toBottomOf="@+id/btResposta4"
+                android:background="@drawable/button_border_amarelo" android:textColor="@android:color/black"
+                android:layout_marginStart="16dp" app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginLeft="16dp" app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintVertical_bias="1.0"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>
