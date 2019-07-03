@@ -42,10 +42,6 @@ class MainActivity : AppCompatActivity() {
         var dificuldade = prefsDificuldade.getString("dificuldade", null)
         var categoria = prefsCategoria.getInt("categoria", 0)
 
-        Log.e("Mail", email)
-        Log.e("Mail", dificuldade)
-        Log.e("Mail", ""+categoria)
-
         if(email != null || senha != null) {
             txtEmailLogin.setText(email)
             txtSenhaLogin.setText(senha)
