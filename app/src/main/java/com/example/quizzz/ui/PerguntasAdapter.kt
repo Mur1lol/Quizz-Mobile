@@ -77,6 +77,11 @@ class PerguntasAdapter (private var perguntas: List<Pergunta>, private  var list
                         itemView.idTempo.text = itemView.resources.getString(R.string.tempo)+": ${millisUntilFinished/1000}"
                         if (pergunta.tipo == "multiple") {
                             itemView.btResposta1.setOnClickListener {
+                                itemView.btResposta1.isClickable = false
+                                itemView.btResposta2.isClickable = false
+                                itemView.btResposta3.isClickable = false
+                                itemView.btResposta4.isClickable = false
+
                                 if(itemView.btResposta1.text == pergunta.resposta_correta) {
                                     listener.abrirPerguntaActivity(+10)
                                     itemView.btResposta1.background = itemView.resources.getDrawable(R.drawable.button_border_verde)
@@ -109,6 +114,11 @@ class PerguntasAdapter (private var perguntas: List<Pergunta>, private  var list
                             }
 
                             itemView.btResposta2.setOnClickListener {
+                                itemView.btResposta1.isClickable = false
+                                itemView.btResposta2.isClickable = false
+                                itemView.btResposta3.isClickable = false
+                                itemView.btResposta4.isClickable = false
+
                                 if(itemView.btResposta1.text == pergunta.resposta_correta) {
                                     listener.abrirPerguntaActivity(-10)
                                     itemView.btResposta1.background = itemView.resources.getDrawable(R.drawable.button_border_verde)
@@ -141,6 +151,11 @@ class PerguntasAdapter (private var perguntas: List<Pergunta>, private  var list
                             }
 
                             itemView.btResposta3.setOnClickListener {
+                                itemView.btResposta1.isClickable = false
+                                itemView.btResposta2.isClickable = false
+                                itemView.btResposta3.isClickable = false
+                                itemView.btResposta4.isClickable = false
+
                                 if(itemView.btResposta1.text == pergunta.resposta_correta) {
                                     listener.abrirPerguntaActivity(-10)
                                     itemView.btResposta1.background = itemView.resources.getDrawable(R.drawable.button_border_verde)
@@ -206,7 +221,7 @@ class PerguntasAdapter (private var perguntas: List<Pergunta>, private  var list
                                     itemView.btResposta3.background = itemView.resources.getDrawable(R.drawable.button_border_vermelho)
                                     itemView.btResposta4.background = itemView.resources.getDrawable(R.drawable.button_border_verde)
                                 }
-                                
+
                             }
                         }
 
