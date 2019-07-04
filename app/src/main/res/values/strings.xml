@@ -23,6 +23,7 @@
     <string name="configuracoes">Configurations</string>
     <string name="pontos">Score</string>
     <string name="registrada">Registered Scoring</string>
+    <string name="entrando">Entering...</string>
 </resources>
 
 
