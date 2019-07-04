@@ -39,8 +39,6 @@ class MainActivity : AppCompatActivity() {
 
         var email = prefsUsuario.getString("email", null)
         var senha = prefsUsuario.getString("senha", null)
-        var dificuldade = prefsDificuldade.getString("dificuldade", null)
-        var categoria = prefsCategoria.getInt("categoria", 0)
 
         if(email != null || senha != null) {
             txtEmailLogin.setText(email)
@@ -62,7 +60,7 @@ class MainActivity : AppCompatActivity() {
 
     fun configuraRetrofit() {
         retrofit = Retrofit.Builder()
-            .baseUrl("https://tads2019-todo-list.herokuapp.com/")
+            .baseUrl("https://tads2019-todo-list.herokuapp.com/usuario/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
         service = retrofit.create(LoginService::class.java)
@@ -71,7 +69,8 @@ class MainActivity : AppCompatActivity() {
     fun carregaDados(email: String, senha: String) {
         service.getLogin(email, senha).enqueue(object : Callback<LoginResponse> {
             override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
-                Toast.makeText(this@MainActivity, "Mensagem de erro!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@MainActivity, getString(R.string.internet), Toast.LENGTH_SHORT).show()
+                mostraBotao()
             }
 
             override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {

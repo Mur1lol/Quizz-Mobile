@@ -81,7 +81,7 @@ class ListaActivity : AppCompatActivity(), PerguntaListListener {
             val intent = Intent(this, PerguntaActivity::class.java)
             val bundle = Bundle()
 
-            bundle.putString("ponto", ""+pontos)
+            bundle.putInt("ponto", pontos)
             intent.putExtras(bundle)
             startActivity(intent)
         }

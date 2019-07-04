@@ -54,12 +54,12 @@ class CadastroActivity : AppCompatActivity() {
 
         service.getCadastro(nome, email, senha).enqueue(object : Callback<CadastroResponse> {
             override fun onFailure(call: Call<CadastroResponse>, t: Throwable) {
-                Toast.makeText(this@CadastroActivity, "Mensagem de erro!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@CadastroActivity, getString(R.string.internet), Toast.LENGTH_SHORT).show()
             }
 
             override fun onResponse(call: Call<CadastroResponse>, response: Response<CadastroResponse>) {
+                var cadastro: CadastroResponse = response.body()!!
                 if(response.body()!=null && senha.length>=6 ) {
-                    var cadastro: CadastroResponse = response.body()!!
 
                     if (cadastro.sucesso) {
                         var prefsUsuario = getSharedPreferences("usuario", Context.MODE_PRIVATE)
@@ -72,9 +72,12 @@ class CadastroActivity : AppCompatActivity() {
                         Toast.makeText(this@CadastroActivity, cadastro.mensagem, Toast.LENGTH_SHORT).show()
                         abrirConfigActivity()
                     }
+                    else {
+                        Toast.makeText(this@CadastroActivity, cadastro.mensagem, Toast.LENGTH_SHORT).show()
+                    }
                 }
                 else {
-                        Toast.makeText(this@CadastroActivity, "erro ao cadastrar", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@CadastroActivity, cadastro.mensagem, Toast.LENGTH_SHORT).show()
                     }
 
             }

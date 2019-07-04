@@ -15,4 +15,11 @@
     <string name="play">Jogar</string>
     <string name="tempo">Tempo</string>
     <string name="pular">Pular pergunta</string>
+    <string name="aleatorio">Aleatório</string>
+    <string name="internet">Falha ao conectar</string>
+    <string name="sair">Deslogar</string>
+    <string name="ranking">Ranking</string>
+    <string name="nova">"Nova pergunta "</string>
+    <string name="local">Questão Local</string>
+    <string name="configuracoes">Configurações</string>
 </resources>

@@ -31,6 +31,9 @@ class ConfigActivity : AppCompatActivity(), CategoriaListListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_config)
 
+        var prefsDificuldade = getSharedPreferences("dificuldade", Context.MODE_PRIVATE)
+        var prefsCategoria = getSharedPreferences("categoria", Context.MODE_PRIVATE)
+
         configuraRetrofit()
         carregarLista()
 
@@ -39,8 +42,29 @@ class ConfigActivity : AppCompatActivity(), CategoriaListListener {
             startActivity(intent)
         }
 
-        var prefsDificuldade = getSharedPreferences("dificuldade", Context.MODE_PRIVATE)
+        btAleatorio.setOnClickListener {
+            var edDif = prefsDificuldade.edit()
+            var edCat = prefsCategoria.edit()
+
+            edDif.putString("dificuldade", null)
+            edCat.putInt("categoria", 0)
+
+            edDif.apply()
+            edCat.apply()
+        }
+
+        var dificuldade = prefsDificuldade.getString("dificuldade", null)
         var edDif = prefsDificuldade.edit()
+
+        if (dificuldade == "easy") {
+            btFacil.isChecked = true
+        }
+        else if (dificuldade == "medium") {
+            btMedio.isChecked = true
+        }
+        else if (dificuldade == "hard") {
+            btDificil.isChecked = true
+        }
 
         btFacil.setOnClickListener {
             edDif.putString("dificuldade", "easy")
@@ -59,7 +83,6 @@ class ConfigActivity : AppCompatActivity(), CategoriaListListener {
     }
 
     fun configuraRetrofit() {
-
         //https://opentdb.com/api_category.php
         retrofit = Retrofit.Builder()
             .baseUrl("https://opentdb.com/")

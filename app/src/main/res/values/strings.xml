@@ -14,6 +14,13 @@
     <string name="play">Play</string>
     <string name="tempo">Time</string>
     <string name="pular">Skip question</string>
+    <string name="aleatorio">Random</string>
+    <string name="internet">Failed to connect</string>
+    <string name="sair">Logout</string>
+    <string name="ranking">Ranking</string>
+    <string name="nova">New Question</string>
+    <string name="local">Local Question</string>
+    <string name="configuracoes">Configurations</string>
 </resources>
 
 
