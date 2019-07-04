@@ -5,6 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.quizzz.R
@@ -51,6 +52,8 @@ class ConfigActivity : AppCompatActivity(), CategoriaListListener {
 
             edDif.apply()
             edCat.apply()
+
+            Toast.makeText(this@ConfigActivity, getString(R.string.aleatorio), Toast.LENGTH_SHORT).show()
         }
 
         var dificuldade = prefsDificuldade.getString("dificuldade", null)
