@@ -21,6 +21,8 @@
     <string name="nova">New Question</string>
     <string name="local">Local Question</string>
     <string name="configuracoes">Configurations</string>
+    <string name="pontos">Score</string>
+    <string name="registrada">Registered Scoring</string>
 </resources>
 
 

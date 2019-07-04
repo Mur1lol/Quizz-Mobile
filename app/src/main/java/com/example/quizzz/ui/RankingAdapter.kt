@@ -27,6 +27,7 @@ class RankingAdapter (private var lista: List<Ranking>) :
         fun preencherView(ranking: Ranking) {
             itemView.txtNick.text = ranking.nome
             itemView.txtPonto.text = ""+ranking.pontuacao
+            itemView.txtData.text = ""+ranking.ultimaPartida
         }
     }
 }

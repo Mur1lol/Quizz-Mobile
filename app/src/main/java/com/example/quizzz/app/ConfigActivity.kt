@@ -83,6 +83,11 @@ class ConfigActivity : AppCompatActivity(), CategoriaListListener {
             edDif.putString("dificuldade", "hard")
             edDif.apply()
         }
+
+        var categoria = prefsCategoria.getInt("categoria", 0)
+
+        Log.e("Dificulade", ""+dificuldade)
+        Log.e("Categoria", ""+categoria)
     }
 
     fun configuraRetrofit() {

@@ -11,24 +11,23 @@
             android:label="@string/app_name"
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
-            android:theme="@style/AppTheme"
-            android:screenOrientation = "portrait">
-        <activity android:name=".app.PerguntaActivity">
+            android:theme="@style/AppTheme">
+        <activity android:name=".app.PerguntaActivity" android:screenOrientation = "portrait">
         </activity>
-        <activity android:name=".app.RankingActivity">
+        <activity android:name=".app.RankingActivity" android:screenOrientation = "portrait">
         </activity>
-        <activity android:name=".app.MainActivity">
+        <activity android:name=".app.MainActivity" android:screenOrientation = "portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".app.CadastroActivity">
+        <activity android:name=".app.CadastroActivity" android:screenOrientation = "portrait">
         </activity>
-        <activity android:name=".app.ListaActivity">
+        <activity android:name=".app.ListaActivity" android:screenOrientation = "portrait">
         </activity>
-        <activity android:name=".app.ConfigActivity">
+        <activity android:name=".app.ConfigActivity" android:screenOrientation = "portrait">
         </activity>
     </application>
 

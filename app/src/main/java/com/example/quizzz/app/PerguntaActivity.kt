@@ -44,10 +44,6 @@ class PerguntaActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        btPerguntaLocal.setOnClickListener {
-            Toast.makeText(this, "SEM PERGUNTAS LOCAIS", Toast.LENGTH_SHORT).show()
-        }
-
         btRanking.setOnClickListener {
             val intent = Intent(this, RankingActivity::class.java)
             startActivity(intent)
@@ -96,7 +92,7 @@ class PerguntaActivity : AppCompatActivity() {
             override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
                 var ponto: LoginResponse = response.body()!!
                 if(response.body()!=null){
-                    Toast.makeText(this@PerguntaActivity, ponto.mensagem, Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@PerguntaActivity, getString(R.string.registrada), Toast.LENGTH_SHORT).show()
                 }
             }
         })

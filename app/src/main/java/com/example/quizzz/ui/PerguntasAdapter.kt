@@ -243,9 +243,6 @@ class PerguntasAdapter (private var perguntas: List<Pergunta>, private  var list
 
                 }
             }
-            itemView.btPular.setOnClickListener {
-                listener.abrirPerguntaActivity(maisTarde)
-            }
         }
 
         @RequiresApi(Build.VERSION_CODES.JELLY_BEAN)
