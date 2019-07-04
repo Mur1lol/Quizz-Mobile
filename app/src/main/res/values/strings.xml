@@ -24,6 +24,7 @@
     <string name="pontos">Score</string>
     <string name="registrada">Registered Scoring</string>
     <string name="entrando">Entering...</string>
+    <string name="errada">Wrong passwords</string>
 </resources>
 
 

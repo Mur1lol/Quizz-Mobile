@@ -25,4 +25,5 @@
     <string name="pontos">Pontos</string>
     <string name="registrada">"Pontuação Registrada "</string>
     <string name="entrando">Entrando...</string>
+    <string name="errada">Senhas erradas</string>
 </resources>

@@ -4,12 +4,14 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.quizzz.R
 import com.example.quizzz.entidades.CadastroResponse
 import com.example.quizzz.servicos.CadastroService
 import kotlinx.android.synthetic.main.activity_cadastro.*
+import kotlinx.android.synthetic.main.activity_main.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -30,10 +32,18 @@ class CadastroActivity : AppCompatActivity() {
         //https://tads2019-todo-list.herokuapp.com/usuario/registrar
 
         configuraRetrofit()
+        val nome = txtNome.text.toString()
+        val email = txtEmail.text.toString()
+        val senha = txtSenha.text.toString()
+
 
         btCadastro.setOnClickListener {
             if(txtSenha.text.toString() == txtConfirma.text.toString()){
-                cadastraUsuario()
+                esconderBotao()
+                cadastraUsuario(nome, email, senha)
+            }
+            else {
+                Toast.makeText(this, getString(R.string.errada), Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -47,14 +57,11 @@ class CadastroActivity : AppCompatActivity() {
         service = retrofit.create(CadastroService::class.java)
     }
 
-    private fun cadastraUsuario(){
-        val nome = txtNome.text.toString()
-        val email = txtEmail.text.toString()
-        val senha = txtSenha.text.toString()
-
+    private fun cadastraUsuario(nome: String, email: String, senha: String){
         service.getCadastro(nome, email, senha).enqueue(object : Callback<CadastroResponse> {
             override fun onFailure(call: Call<CadastroResponse>, t: Throwable) {
                 Toast.makeText(this@CadastroActivity, getString(R.string.internet), Toast.LENGTH_SHORT).show()
+                mostraBotao()
             }
 
             override fun onResponse(call: Call<CadastroResponse>, response: Response<CadastroResponse>) {
@@ -73,12 +80,14 @@ class CadastroActivity : AppCompatActivity() {
                         abrirConfigActivity()
                     }
                     else {
+                        mostraBotao()
                         Toast.makeText(this@CadastroActivity, cadastro.mensagem, Toast.LENGTH_SHORT).show()
                     }
                 }
                 else {
-                        Toast.makeText(this@CadastroActivity, cadastro.mensagem, Toast.LENGTH_SHORT).show()
-                    }
+                    mostraBotao()
+                    Toast.makeText(this@CadastroActivity, cadastro.mensagem, Toast.LENGTH_SHORT).show()
+                }
 
             }
 
@@ -90,4 +99,12 @@ class CadastroActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
+    fun esconderBotao() {
+        btCadastro.visibility = View.INVISIBLE
+        Toast.makeText(this, getString(R.string.entrando), Toast.LENGTH_SHORT).show()
+    }
+
+    fun mostraBotao() {
+        btCadastro.visibility = View.VISIBLE
+    }
 }
