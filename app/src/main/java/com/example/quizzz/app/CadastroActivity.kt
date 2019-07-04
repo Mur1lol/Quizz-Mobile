@@ -32,15 +32,11 @@ class CadastroActivity : AppCompatActivity() {
         //https://tads2019-todo-list.herokuapp.com/usuario/registrar
 
         configuraRetrofit()
-        val nome = txtNome.text.toString()
-        val email = txtEmail.text.toString()
-        val senha = txtSenha.text.toString()
-
 
         btCadastro.setOnClickListener {
             if(txtSenha.text.toString() == txtConfirma.text.toString()){
                 esconderBotao()
-                cadastraUsuario(nome, email, senha)
+                cadastraUsuario(txtNome.text.toString(), txtEmail.text.toString(), txtSenha.text.toString())
             }
             else {
                 Toast.makeText(this, getString(R.string.errada), Toast.LENGTH_SHORT).show()
